@@ -18,7 +18,7 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    @ResponseStatus(code= HttpStatus.CREATED)
+    @ResponseStatus(code = HttpStatus.CREATED)
     public @ResponseBody Book addBook(@RequestBody Book book) {
         return bookRepository.save(book);
     }
