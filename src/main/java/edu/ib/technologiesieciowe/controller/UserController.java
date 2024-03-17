@@ -1,24 +1,36 @@
 package edu.ib.technologiesieciowe.controller;
 
 import edu.ib.technologiesieciowe.entity.User;
-import edu.ib.technologiesieciowe.repository.UserRepository;
+import edu.ib.technologiesieciowe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
-
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserRepository userRepository) {this.userRepository = userRepository;}
-
-    @PostMapping("/add")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public @ResponseBody User addUser(@RequestBody User user) {return userRepository.save(user);}
+    public UserController(UserService userService) {this.userService = userService;}
 
     @GetMapping("/getAll")
-    public @ResponseBody Iterable<User> getAllUsers() {return userRepository.findAll();}
+    public @ResponseBody Iterable<User> getAll() {return userService.getAll();}
+
+    @GetMapping("/{userId}")
+    public User getOne(@PathVariable int userId) {
+        return userService.getOne(userId);
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public @ResponseBody User create(@RequestBody User user) {
+        return userService.create(user);
+    }
+
+    @DeleteMapping("/{userId}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int userId) {
+        userService.delete(userId);
+    }
 }

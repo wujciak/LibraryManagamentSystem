@@ -1,40 +1,63 @@
 package edu.ib.technologiesieciowe.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
+@Table(name = "review", schema = "librarydb")
 public class Review {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_id")
+    private int reviewId;
 
-    private Integer score;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Basic
+    @Column(name = "score")
+    private int score;
+
+    @Basic
+    @Column(name = "comment")
     private String comment;
 
+    @Basic
+    @Column(name = "date_of_review")
     private Date dateOfReview;
 
-    // dodam tutaj klucze obce bookId oraz userId
-
-    public Integer getId() {
-        return id;
+    public Book getBook() {
+        return book;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
-    public Integer getScore() {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getId() {
+        return reviewId;
+    }
+
+    public int getScore() {
         return score;
     }
 
-    public void setScore(Integer score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

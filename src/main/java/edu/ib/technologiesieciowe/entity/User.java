@@ -1,33 +1,38 @@
 package edu.ib.technologiesieciowe.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users", schema = "librarydb")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private int userId;
 
+    @Basic
+    @Column(name = "name", unique = true)
     private String name;
 
+    @Basic
+    @Column(name = "password")
     private String password;
 
+    @Basic
+    @Column(name = "role")
     private String role;
 
+    @Basic
+    @Column(name = "email", unique = true)
     private String email;
 
+    @Basic
+    @Column(name = "full_name")
     private String fullName;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public int getId() {
+        return userId;
     }
 
     public String getName() {

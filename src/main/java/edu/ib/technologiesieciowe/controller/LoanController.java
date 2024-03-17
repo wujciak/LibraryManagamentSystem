@@ -1,23 +1,40 @@
 package edu.ib.technologiesieciowe.controller;
 
 import edu.ib.technologiesieciowe.entity.Loan;
-import edu.ib.technologiesieciowe.repository.LoanRepository;
+import edu.ib.technologiesieciowe.service.LoanService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/loan")
+@RequestMapping("/api/loan")
 public class LoanController {
+    private final LoanService loanService;
 
-    private final LoanRepository loanRepository;
-
-    public LoanController(LoanRepository loanRepository) {this.loanRepository = loanRepository;}
-
-    @PostMapping("/add")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public @ResponseBody Loan addLoan(@RequestBody Loan loan) {return loanRepository.save(loan);}
+    @Autowired
+    public LoanController(LoanService loanService) {
+        this.loanService = loanService;
+    }
 
     @GetMapping("/getAll")
-    public @ResponseBody Iterable<Loan> getAllLoans() {return loanRepository.findAll();}
+    public @ResponseBody Iterable<Loan> getAll() {
+        return loanService.getAll();
+    }
 
+    @GetMapping("/{loanId}")
+    public Loan getOne(@PathVariable int loanId) {
+        return loanService.getOne(loanId);
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public @ResponseBody Loan create(@RequestBody Loan loan) {
+        return loanService.create(loan);
+    }
+
+    @DeleteMapping("/{loanId}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int loanId) {
+        loanService.delete(loanId);
+    }
 }

@@ -1,32 +1,40 @@
 package edu.ib.technologiesieciowe.controller;
 
-import edu.ib.technologiesieciowe.entity.Book;
 import edu.ib.technologiesieciowe.entity.BookDetails;
-import edu.ib.technologiesieciowe.repository.BookDetailsRepository;
+import edu.ib.technologiesieciowe.service.BookDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bookDetails")
+@RequestMapping("/api/bookDetails")
 public class BookDetailsController {
-
-    private final BookDetailsRepository bookDetailsRepository;
+    private final BookDetailsService bookDetailsService;
 
     @Autowired
-    public BookDetailsController(BookDetailsRepository bookDetailsRepository) {
-        this.bookDetailsRepository = bookDetailsRepository;
-    }
-
-    @PostMapping("/add")
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public @ResponseBody BookDetails addBookDetails(@RequestBody BookDetails bookDetails) {
-        return bookDetailsRepository.save(bookDetails);
+    public BookDetailsController(BookDetailsService bookDetailsService) {
+        this.bookDetailsService = bookDetailsService;
     }
 
     @GetMapping("/getAll")
-    public @ResponseBody Iterable<BookDetails> getAllBookDetails() {
-        return bookDetailsRepository.findAll();
+    public @ResponseBody Iterable<BookDetails> getAll() {
+        return bookDetailsService.getAll();
     }
 
+    @GetMapping("/{bookDetailsId}")
+    public BookDetails getOne(@PathVariable int bookDetailsId) {
+        return bookDetailsService.getOne(bookDetailsId);
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public @ResponseBody BookDetails create(@RequestBody BookDetails bookDetails) {
+        return bookDetailsService.create(bookDetails);
+    }
+
+    @DeleteMapping("/{bookDetailsId}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int bookDetailsId) {
+        bookDetailsService.delete(bookDetailsId);
+    }
 }

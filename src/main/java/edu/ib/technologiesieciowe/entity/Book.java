@@ -1,35 +1,49 @@
 package edu.ib.technologiesieciowe.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "books", schema = "librarydb")
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_id")
+    private int bookId;
 
+    @Basic
+    @Column(name = "isbn", unique = true)
     private String isbn;
 
+    @Basic
+    @Column(name = "title")
     private String title;
 
+    @Basic
+    @Column(name = "author")
     private String author;
 
+    @Basic
+    @Column(name = "publisher")
     private String publisher;
 
-    private Integer yearOfPublish;
+    @Basic
+    @Column(name = "year_of_publish")
+    private int yearOfPublish;
 
-    private Integer availableCopies;
+    @Basic
+    @Column(name = "available_copies")
+    private int availableCopies;
 
-    public Integer getId() {
-        return id;
+    @OneToOne(mappedBy = "book")
+    private BookDetails bookDetails;
+
+    public int getId() {
+        return bookId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public BookDetails getBookDetails() {
+        return bookDetails;
     }
 
     public String getIsbn() {
@@ -64,20 +78,21 @@ public class Book {
         this.publisher = publisher;
     }
 
-    public Integer getYearOfPublish() {
+    public int getYearOfPublish() {
         return yearOfPublish;
     }
 
-    public void setYearOfPublish(Integer yearOfPublish) {
+    public void setYearOfPublish(int yearOfPublish) {
         this.yearOfPublish = yearOfPublish;
     }
 
-    public Integer getAvailableCopies() {
+    public int getAvailableCopies() {
         return availableCopies;
     }
 
-    public void setAvailableCopies(Integer availableCopies) {
+    public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
     }
+
 
 }
