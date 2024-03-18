@@ -2,6 +2,8 @@ package edu.ib.technologiesieciowe.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "books", schema = "librarydb")
 public class Book {
@@ -35,6 +37,12 @@ public class Book {
     @Column(name = "available_copies")
     private int availableCopies;
 
+    @OneToMany(mappedBy = "book")
+    private List<Loan> loans;
+
+    @OneToMany(mappedBy = "book")
+    private List<Review> reviews;
+
     @OneToOne(mappedBy = "book")
     private BookDetails bookDetails;
 
@@ -42,8 +50,28 @@ public class Book {
         return bookId;
     }
 
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     public BookDetails getBookDetails() {
         return bookDetails;
+    }
+
+    public void setBookDetails(BookDetails bookDetails) {
+        this.bookDetails = bookDetails;
     }
 
     public String getIsbn() {

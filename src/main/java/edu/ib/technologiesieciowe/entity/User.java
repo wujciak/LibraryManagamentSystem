@@ -2,6 +2,8 @@ package edu.ib.technologiesieciowe.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users", schema = "librarydb")
 public class User {
@@ -30,6 +32,28 @@ public class User {
     @Basic
     @Column(name = "full_name")
     private String fullName;
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "user")
+    private List<Loan> loans;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
 
     public int getId() {
         return userId;
