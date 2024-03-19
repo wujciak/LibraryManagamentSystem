@@ -31,6 +31,10 @@ public class BookDetails {
         return bookDetailsId;
     }
 
+    public void setBookDetailsId(int bookDetailsId) {
+        this.bookDetailsId = bookDetailsId;
+    }
+
     public Book getBook() {
         return book;
     }

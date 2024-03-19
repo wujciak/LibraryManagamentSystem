@@ -3,7 +3,6 @@ package edu.ib.technologiesieciowe.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "loan", schema = "librarydb")
@@ -50,8 +49,12 @@ public class Loan {
         this.user = user;
     }
 
-    public int getId() {
+    public int getLoanId() {
         return loanId;
+    }
+
+    public void setLoanId(int loanId) {
+        this.loanId = loanId;
     }
 
     public Date getDateOfStart() {

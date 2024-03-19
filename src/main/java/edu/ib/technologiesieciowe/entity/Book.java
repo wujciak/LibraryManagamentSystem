@@ -46,32 +46,12 @@ public class Book {
     @OneToOne(mappedBy = "book")
     private BookDetails bookDetails;
 
-    public int getId() {
+    public int getBookId() {
         return bookId;
     }
 
-    public List<Loan> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(List<Loan> loans) {
-        this.loans = loans;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
-    }
-
-    public BookDetails getBookDetails() {
-        return bookDetails;
-    }
-
-    public void setBookDetails(BookDetails bookDetails) {
-        this.bookDetails = bookDetails;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public String getIsbn() {
@@ -122,5 +102,27 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
+    public List<Loan> getLoans() {
+        return loans;
+    }
 
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public BookDetails getBookDetails() {
+        return bookDetails;
+    }
+
+    public void setBookDetails(BookDetails bookDetails) {
+        this.bookDetails = bookDetails;
+    }
 }

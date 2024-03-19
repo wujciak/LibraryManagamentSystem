@@ -33,6 +33,14 @@ public class Review {
     @Column(name = "date_of_review")
     private Date dateOfReview;
 
+    public int getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
+    }
+
     public Book getBook() {
         return book;
     }
@@ -47,10 +55,6 @@ public class Review {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public int getId() {
-        return reviewId;
     }
 
     public int getScore() {
@@ -76,5 +80,4 @@ public class Review {
     public void setDateOfReview(Date dateOfReview) {
         this.dateOfReview = dateOfReview;
     }
-
 }
