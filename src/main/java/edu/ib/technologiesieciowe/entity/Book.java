@@ -37,10 +37,10 @@ public class Book {
     @Column(name = "available_copies")
     private int availableCopies;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Loan> loans;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Review> reviews;
 
     @OneToOne(mappedBy = "book")

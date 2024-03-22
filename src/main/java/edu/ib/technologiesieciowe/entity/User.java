@@ -14,8 +14,8 @@ public class User {
     private int userId;
 
     @Basic
-    @Column(name = "name", unique = true)
-    private String name;
+    @Column(name = "username", unique = true)
+    private String username;
 
     @Basic
     @Column(name = "password")
@@ -33,10 +33,10 @@ public class User {
     @Column(name = "full_name")
     private String fullName;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Loan> loans;
 
     public int getUserId() {
@@ -47,12 +47,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
