@@ -29,7 +29,6 @@ public class BookController {
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
     public @ResponseBody Book create(@RequestBody Book book) {
-        System.out.println(book.getYearOfPublish());
         return bookService.create(book);
     }
 
