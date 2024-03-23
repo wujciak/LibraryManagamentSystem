@@ -1,5 +1,6 @@
 package edu.ib.technologiesieciowe.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -37,12 +38,15 @@ public class Book {
     @Column(name = "available_copies")
     private int availableCopies;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Loan> loans;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Review> reviews;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "book")
     private BookDetails bookDetails;
 

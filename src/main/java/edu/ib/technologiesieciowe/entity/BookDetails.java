@@ -1,5 +1,6 @@
 package edu.ib.technologiesieciowe.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
