@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
-import edu.ib.technologiesieciowe.entity.Review;
+import edu.ib.technologiesieciowe.model.Review;
 import edu.ib.technologiesieciowe.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

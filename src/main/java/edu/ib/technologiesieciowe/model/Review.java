@@ -1,6 +1,5 @@
-package edu.ib.technologiesieciowe.entity;
+package edu.ib.technologiesieciowe.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;

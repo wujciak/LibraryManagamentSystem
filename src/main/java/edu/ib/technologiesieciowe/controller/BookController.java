@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.controller;
 
-import edu.ib.technologiesieciowe.entity.Book;
+import edu.ib.technologiesieciowe.model.Book;
 import edu.ib.technologiesieciowe.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

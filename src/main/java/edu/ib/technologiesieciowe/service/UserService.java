@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
-import edu.ib.technologiesieciowe.entity.User;
+import edu.ib.technologiesieciowe.model.User;
 import edu.ib.technologiesieciowe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.controller;
 
-import edu.ib.technologiesieciowe.entity.Review;
+import edu.ib.technologiesieciowe.model.Review;
 import edu.ib.technologiesieciowe.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

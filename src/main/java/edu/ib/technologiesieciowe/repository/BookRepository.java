@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.repository;
 
-import edu.ib.technologiesieciowe.entity.Book;
+import edu.ib.technologiesieciowe.model.Book;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

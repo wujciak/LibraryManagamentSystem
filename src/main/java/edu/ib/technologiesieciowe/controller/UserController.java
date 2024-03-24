@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.controller;
 
-import edu.ib.technologiesieciowe.entity.User;
+import edu.ib.technologiesieciowe.model.User;
 import edu.ib.technologiesieciowe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

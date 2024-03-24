@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
-import edu.ib.technologiesieciowe.entity.Loan;
+import edu.ib.technologiesieciowe.model.Loan;
 import edu.ib.technologiesieciowe.repository.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

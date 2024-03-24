@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
-import edu.ib.technologiesieciowe.entity.BookDetails;
+import edu.ib.technologiesieciowe.model.BookDetails;
 import edu.ib.technologiesieciowe.repository.BookDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

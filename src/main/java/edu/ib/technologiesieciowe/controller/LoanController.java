@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.controller;
 
-import edu.ib.technologiesieciowe.entity.Loan;
+import edu.ib.technologiesieciowe.model.Loan;
 import edu.ib.technologiesieciowe.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
