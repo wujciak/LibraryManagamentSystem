@@ -15,24 +15,15 @@ public class User {
     private int userId;
 
     @Basic
-    @Column(name = "username", unique = true)
-    private String username;
-
-    @Basic
-    @Column(name = "password")
-    private String password;
-
-    @Basic
-    @Column(name = "role")
-    private String role;
+    @Column(name = "name", nullable = true)
+    private String name;
 
     @Basic
     @Column(name = "email", unique = true)
     private String email;
 
-    @Basic
-    @Column(name = "full_name")
-    private String fullName;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Auth auth;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -51,27 +42,11 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
     public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+        this.name = username;
     }
 
     public String getEmail() {
@@ -80,14 +55,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public List<Review> getReviews() {
