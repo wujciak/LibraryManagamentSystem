@@ -11,6 +11,7 @@ import edu.ib.technologiesieciowe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthService {
@@ -28,6 +29,7 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     public RegisterResponseDTO register(RegisterDTO dto) {
         User user = new User();
         user.setEmail(dto.getEmail());

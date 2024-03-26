@@ -72,4 +72,20 @@ public class User {
     public void setLoans(List<Loan> loans) {
         this.loans = loans;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Auth getAuth() {
+        return auth;
+    }
+
+    public void setAuth(Auth auth) {
+        this.auth = auth;
+    }
 }
