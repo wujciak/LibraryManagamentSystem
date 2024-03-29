@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "auth", schema = "librarydb")
 public class Auth {
     @Id
-    @Column(name = "authId")
+    @Column(name = "auth_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int authId;
 
@@ -26,6 +26,9 @@ public class Auth {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public Auth() {
+    }
 
     public int getAuthId() {
         return authId;

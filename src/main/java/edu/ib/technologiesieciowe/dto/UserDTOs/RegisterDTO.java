@@ -1,16 +1,16 @@
-package edu.ib.technologiesieciowe.dto;
+package edu.ib.technologiesieciowe.dto.UserDTOs;
 
 import edu.ib.technologiesieciowe.commonTypes.UserRole;
 
 public class RegisterDTO {
-    private String password;
     private String username;
+    private String password;
     private UserRole role;
     private String email;
 
-    public RegisterDTO(String password, String username, UserRole role, String email) {
-        this.password = password;
+    public RegisterDTO(String username, String password, UserRole role, String email) {
         this.username = username;
+        this.password = password;
         this.role = role;
         this.email = email;
     }

@@ -1,4 +1,4 @@
-package edu.ib.technologiesieciowe.service;
+package edu.ib.technologiesieciowe.security;
 
 import edu.ib.technologiesieciowe.commonTypes.UserRole;
 import edu.ib.technologiesieciowe.model.Auth;
@@ -62,10 +62,6 @@ public class JwtService {
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
-    }
-
-    private boolean verify(String token) {
-        return true;
     }
 
     private String generateToken(Map<String, Object> extraClaims, Auth userDetails) {

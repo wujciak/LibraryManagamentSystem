@@ -1,4 +1,4 @@
-package edu.ib.technologiesieciowe.dto;
+package edu.ib.technologiesieciowe.dto.UserDTOs;
 
 import edu.ib.technologiesieciowe.commonTypes.UserRole;
 

@@ -1,8 +1,9 @@
 package edu.ib.technologiesieciowe.controller;
 
-import edu.ib.technologiesieciowe.dto.LoginDTO;
-import edu.ib.technologiesieciowe.dto.RegisterDTO;
-import edu.ib.technologiesieciowe.dto.RegisterResponseDTO;
+import edu.ib.technologiesieciowe.dto.UserDTOs.LoginDTO;
+import edu.ib.technologiesieciowe.dto.UserDTOs.LoginResponseDTO;
+import edu.ib.technologiesieciowe.dto.UserDTOs.RegisterDTO;
+import edu.ib.technologiesieciowe.dto.UserDTOs.RegisterResponseDTO;
 import edu.ib.technologiesieciowe.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    @PreAuthorize("permitAll()")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginDTO requestBody) {
         LoginResponseDTO dto = authService.login(requestBody);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);

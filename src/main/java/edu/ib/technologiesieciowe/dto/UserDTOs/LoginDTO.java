@@ -1,4 +1,4 @@
-package edu.ib.technologiesieciowe.dto;
+package edu.ib.technologiesieciowe.dto.UserDTOs;
 
 public class LoginDTO {
     private String username;

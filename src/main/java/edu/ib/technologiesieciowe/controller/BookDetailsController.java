@@ -1,40 +1,61 @@
 package edu.ib.technologiesieciowe.controller;
 
+import edu.ib.technologiesieciowe.dto.BookDetailsDTOs.BookDetailsDTO;
+import edu.ib.technologiesieciowe.dto.BookDetailsDTOs.CreateBookDetailsDTO;
 import edu.ib.technologiesieciowe.model.BookDetails;
 import edu.ib.technologiesieciowe.service.BookDetailsService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/api/bookDetails")
+@PreAuthorize("hasRole('ADMIN')")
 public class BookDetailsController {
     private final BookDetailsService bookDetailsService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public BookDetailsController(BookDetailsService bookDetailsService) {
+    public BookDetailsController(BookDetailsService bookDetailsService, ModelMapper modelMapper) {
         this.bookDetailsService = bookDetailsService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping("/getAll")
-    public @ResponseBody Iterable<BookDetails> getAll() {
-        return bookDetailsService.getAll();
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
+    public @ResponseBody Iterable<BookDetailsDTO> getAll() {
+        Iterable<BookDetails> bookDetails = bookDetailsService.getAll();
+        return mapBookDetailsToDTOs(bookDetails);
     }
 
     @GetMapping("/{bookDetailsId}")
-    public BookDetails getOne(@PathVariable int bookDetailsId) {
-        return bookDetailsService.getOne(bookDetailsId);
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
+    public BookDetailsDTO getOne(@PathVariable int bookDetailsId) {
+        BookDetails bookDetails = bookDetailsService.getOne(bookDetailsId);
+        return modelMapper.map(bookDetails, BookDetailsDTO.class);
     }
 
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public @ResponseBody BookDetails create(@RequestBody BookDetails bookDetails) {
-        return bookDetailsService.create(bookDetails);
+    public @ResponseBody BookDetailsDTO create(@RequestBody CreateBookDetailsDTO createBookDetailsDTO) {
+        BookDetails bookDetails = modelMapper.map(createBookDetailsDTO, BookDetails.class);
+        BookDetails createdBookDetails = bookDetailsService.create(bookDetails);
+        return modelMapper.map(createdBookDetails, BookDetailsDTO.class);
     }
 
     @DeleteMapping("/{bookDetailsId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int bookDetailsId) {
         bookDetailsService.delete(bookDetailsId);
+    }
+    private Iterable<BookDetailsDTO> mapBookDetailsToDTOs(Iterable<BookDetails> bookDetails) {
+        return StreamSupport.stream(bookDetails.spliterator(), false)
+                .map(bookDetail -> modelMapper.map(bookDetail, BookDetailsDTO.class))
+                .collect(Collectors.toList());
     }
 }

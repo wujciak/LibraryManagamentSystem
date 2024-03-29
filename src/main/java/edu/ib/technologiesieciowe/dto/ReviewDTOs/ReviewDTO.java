@@ -1,39 +1,26 @@
-package edu.ib.technologiesieciowe.model;
+package edu.ib.technologiesieciowe.dto.ReviewDTOs;
 
-import jakarta.persistence.*;
+import edu.ib.technologiesieciowe.model.Book;
+import edu.ib.technologiesieciowe.model.User;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "review", schema = "librarydb")
-public class Review {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_id")
+public class ReviewDTO {
     private int reviewId;
-
-    @ManyToOne
-    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @Basic
-    @Column(name = "score", nullable = false)
     private int score;
-
-    @Basic
-    @Column(name = "comment")
-    private String comment;
-
-    @Basic
-    @Column(name = "date_of_review", nullable = false)
     private Date dateOfReview;
 
-    public Review() {
+    public ReviewDTO(int reviewId, Book book, User user, int score, Date dateOfReview) {
+        this.reviewId = reviewId;
+        this.book = book;
+        this.user = user;
+        this.score = score;
+        this.dateOfReview = dateOfReview;
+    }
+
+    public ReviewDTO() {
     }
 
     public int getReviewId() {
@@ -66,14 +53,6 @@ public class Review {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 
     public Date getDateOfReview() {

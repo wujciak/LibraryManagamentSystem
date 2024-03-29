@@ -15,14 +15,15 @@ public class User {
     private int userId;
 
     @Basic
-    @Column(name = "name", nullable = true)
+    @Column(name = "name")
     private String name;
 
     @Basic
     @Column(name = "email", unique = true)
     private String email;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToOne(mappedBy = "user")
     private Auth auth;
 
     @JsonIgnore
@@ -33,6 +34,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Loan> loans;
 
+    public User() {
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -41,12 +45,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUsername() {
+    public String getName() {
         return name;
     }
 
-    public void setUsername(String username) {
-        this.name = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -55,6 +59,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Auth getAuth() {
+        return auth;
+    }
+
+    public void setAuth(Auth auth) {
+        this.auth = auth;
     }
 
     public List<Review> getReviews() {
@@ -71,21 +83,5 @@ public class User {
 
     public void setLoans(List<Loan> loans) {
         this.loans = loans;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Auth getAuth() {
-        return auth;
-    }
-
-    public void setAuth(Auth auth) {
-        this.auth = auth;
     }
 }

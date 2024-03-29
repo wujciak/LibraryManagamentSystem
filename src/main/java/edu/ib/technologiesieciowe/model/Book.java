@@ -19,23 +19,23 @@ public class Book {
     private String isbn;
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Basic
-    @Column(name = "author")
+    @Column(name = "author", nullable = false)
     private String author;
 
     @Basic
-    @Column(name = "publisher")
+    @Column(name = "publisher", nullable = false)
     private String publisher;
 
     @Basic
-    @Column(name = "year_of_publish")
+    @Column(name = "year_of_publish", nullable = false)
     private int yearOfPublish;
 
     @Basic
-    @Column(name = "available_copies")
+    @Column(name = "available_copies", nullable = false)
     private int availableCopies;
 
     @JsonIgnore
@@ -49,6 +49,9 @@ public class Book {
     @JsonIgnore
     @OneToOne(mappedBy = "book")
     private BookDetails bookDetails;
+
+    public Book() {
+    }
 
     public int getBookId() {
         return bookId;

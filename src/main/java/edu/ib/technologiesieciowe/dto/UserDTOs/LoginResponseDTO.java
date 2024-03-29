@@ -1,4 +1,4 @@
-package edu.ib.technologiesieciowe.controller;
+package edu.ib.technologiesieciowe.dto.UserDTOs;
 
 public class LoginResponseDTO {
     private String token;

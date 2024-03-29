@@ -1,13 +1,14 @@
 package edu.ib.technologiesieciowe.service;
 
-import edu.ib.technologiesieciowe.controller.LoginResponseDTO;
-import edu.ib.technologiesieciowe.dto.LoginDTO;
-import edu.ib.technologiesieciowe.dto.RegisterDTO;
-import edu.ib.technologiesieciowe.dto.RegisterResponseDTO;
+import edu.ib.technologiesieciowe.dto.UserDTOs.LoginResponseDTO;
+import edu.ib.technologiesieciowe.dto.UserDTOs.LoginDTO;
+import edu.ib.technologiesieciowe.dto.UserDTOs.RegisterDTO;
+import edu.ib.technologiesieciowe.dto.UserDTOs.RegisterResponseDTO;
 import edu.ib.technologiesieciowe.model.Auth;
 import edu.ib.technologiesieciowe.model.User;
 import edu.ib.technologiesieciowe.repository.AuthRepository;
 import edu.ib.technologiesieciowe.repository.UserRepository;
+import edu.ib.technologiesieciowe.security.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -14,15 +14,15 @@ public class Loan {
     private int loanId;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Basic
-    @Column(name = "date_of_start")
+    @Column(name = "date_of_start", nullable = false)
     private Date dateOfStart;
 
     @Basic
@@ -32,6 +32,17 @@ public class Loan {
     @Basic
     @Column(name = "date_of_return")
     private Date dateOfReturn;
+
+    public Loan() {
+    }
+
+    public int getLoanId() {
+        return loanId;
+    }
+
+    public void setLoanId(int loanId) {
+        this.loanId = loanId;
+    }
 
     public Book getBook() {
         return book;
@@ -47,14 +58,6 @@ public class Loan {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public int getLoanId() {
-        return loanId;
-    }
-
-    public void setLoanId(int loanId) {
-        this.loanId = loanId;
     }
 
     public Date getDateOfStart() {

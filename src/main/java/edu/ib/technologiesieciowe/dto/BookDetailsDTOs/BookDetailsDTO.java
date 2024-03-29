@@ -1,33 +1,21 @@
-package edu.ib.technologiesieciowe.model;
+package edu.ib.technologiesieciowe.dto.BookDetailsDTOs;
 
-import jakarta.persistence.*;
+import edu.ib.technologiesieciowe.model.Book;
 
-@Entity
-@Table(name = "book_details", schema = "librarydb")
-public class BookDetails {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_details_id")
+public class BookDetailsDTO {
     private int bookDetailsId;
-
-    @OneToOne
-    @JoinColumn(name = "book_id")
     private Book book;
-
-    @Basic
-    @Column(name = "genre")
     private String genre;
-
-    @Basic
-    @Column(name = "summary")
     private String summary;
 
-    @Basic
-    @Column(name = "cover_image_url", unique = true)
-    private String coverImageURL;
+    public BookDetailsDTO(int bookDetailsId, Book book, String genre, String summary) {
+        this.bookDetailsId = bookDetailsId;
+        this.book = book;
+        this.genre = genre;
+        this.summary = summary;
+    }
 
-    public BookDetails() {
+    public BookDetailsDTO() {
     }
 
     public int getBookDetailsId() {
@@ -60,13 +48,5 @@ public class BookDetails {
 
     public void setSummary(String summary) {
         this.summary = summary;
-    }
-
-    public String getCoverImageURL() {
-        return coverImageURL;
-    }
-
-    public void setCoverImageURL(String coverImageURL) {
-        this.coverImageURL = coverImageURL;
     }
 }
