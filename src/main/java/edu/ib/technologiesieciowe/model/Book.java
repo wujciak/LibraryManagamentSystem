@@ -15,7 +15,7 @@ public class Book {
     private int bookId;
 
     @Basic
-    @Column(name = "isbn", unique = true)
+    @Column(name = "isbn", unique = true, nullable = false)
     private String isbn;
 
     @Basic

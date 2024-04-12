@@ -8,7 +8,6 @@ import edu.ib.technologiesieciowe.model.Auth;
 import edu.ib.technologiesieciowe.model.User;
 import edu.ib.technologiesieciowe.repository.AuthRepository;
 import edu.ib.technologiesieciowe.repository.UserRepository;
-import edu.ib.technologiesieciowe.security.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,7 +32,6 @@ public class AuthService {
     public RegisterResponseDTO register(RegisterDTO dto) {
         User user = new User();
         user.setEmail(dto.getEmail());
-        user.setEmail(dto.getEmail());
         userRepository.save(user);
 
         Auth auth = new Auth();
@@ -51,7 +49,7 @@ public class AuthService {
         Auth auth = authRepository.findByUsername(dto.getUsername()).orElseThrow(RuntimeException::new);
 
         if(!passwordEncoder.matches(dto.getPassword(), auth.getPassword())) {
-            throw new RuntimeException();
+            throw new RuntimeException("Test");
         }
 
         String token = jwtService.generateToken(auth);

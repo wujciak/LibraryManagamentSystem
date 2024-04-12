@@ -1,4 +1,4 @@
-package edu.ib.technologiesieciowe.security;
+package edu.ib.technologiesieciowe.service;
 
 import edu.ib.technologiesieciowe.commonTypes.UserRole;
 import edu.ib.technologiesieciowe.model.Auth;
@@ -26,11 +26,6 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetail);
     }
 
-    public UserRole extractRole(String token) {
-        String roleString =  extractClaim(token, (claims) -> claims.get("role", String.class));
-        return UserRole.valueOf(roleString);
-    }
-
     public boolean isTokenValid(String token) {
         try {
             return !isTokenExpired(token);
@@ -41,6 +36,11 @@ public class JwtService {
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+
+    public UserRole extractRole(String token) {
+        String roleString = extractClaim(token, (claims) -> claims.get("role", String.class));
+        return UserRole.valueOf(roleString);
     }
 
     private boolean isTokenExpired(String token) {
@@ -66,7 +66,6 @@ public class JwtService {
 
     private String generateToken(Map<String, Object> extraClaims, Auth userDetails) {
         extraClaims.put("role", userDetails.getRole());
-
         return Jwts.builder()
                 .claims(extraClaims)
                 .subject(userDetails.getUsername())

@@ -17,7 +17,6 @@ import java.util.stream.StreamSupport;
 @RequestMapping("/api/book")
 @PreAuthorize("hasRole('ADMIN')")
 public class BookController {
-
     private final ModelMapper modelMapper;
     private final BookService bookService;
 

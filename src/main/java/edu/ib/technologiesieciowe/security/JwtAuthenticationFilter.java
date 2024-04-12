@@ -1,5 +1,6 @@
 package edu.ib.technologiesieciowe.security;
 
+import edu.ib.technologiesieciowe.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
