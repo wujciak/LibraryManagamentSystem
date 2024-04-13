@@ -6,11 +6,14 @@ public class CreateBookDetailsDTO {
     private Book book;
     private String genre;
     private String summary;
+    private String coverImageURL;
 
-    public CreateBookDetailsDTO(Book book, String genre, String summary) {
+
+    public CreateBookDetailsDTO(Book book, String genre, String summary, String coverImageURL) {
         this.book = book;
         this.genre = genre;
         this.summary = summary;
+        this.coverImageURL = coverImageURL;
     }
 
     public CreateBookDetailsDTO() {
@@ -38,5 +41,13 @@ public class CreateBookDetailsDTO {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getCoverImageURL() {
+        return coverImageURL;
+    }
+
+    public void setCoverImageURL(String coverImageURL) {
+        this.coverImageURL = coverImageURL;
     }
 }

@@ -19,6 +19,10 @@ public class User {
     private String name;
 
     @Basic
+    @Column(name = "age")
+    private int age;
+
+    @Basic
     @Column(name = "email", unique = true)
     private String email;
 
@@ -83,5 +87,13 @@ public class User {
 
     public void setLoans(List<Loan> loans) {
         this.loans = loans;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

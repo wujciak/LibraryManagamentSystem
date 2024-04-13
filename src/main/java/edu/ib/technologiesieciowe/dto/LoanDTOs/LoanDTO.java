@@ -10,12 +10,16 @@ public class LoanDTO {
     private Book book;
     private User user;
     private Date dateOfStart;
+    private Date dateOfEnd;
+    private Date dateOfReturn;
 
-    public LoanDTO(int loanId, Book book, User user, Date dateOfStart) {
+    public LoanDTO(int loanId, Book book, User user, Date dateOfStart, Date dateOfEnd, Date dateOfReturn) {
         this.loanId = loanId;
         this.book = book;
         this.user = user;
         this.dateOfStart = dateOfStart;
+        this.dateOfEnd = dateOfEnd;
+        this.dateOfReturn = dateOfReturn;
     }
 
     public LoanDTO() {
@@ -51,5 +55,21 @@ public class LoanDTO {
 
     public void setDateOfStart(Date dateOfStart) {
         this.dateOfStart = dateOfStart;
+    }
+
+    public Date getDateOfEnd() {
+        return dateOfEnd;
+    }
+
+    public void setDateOfEnd(Date dateOfEnd) {
+        this.dateOfEnd = dateOfEnd;
+    }
+
+    public Date getDateOfReturn() {
+        return dateOfReturn;
+    }
+
+    public void setDateOfReturn(Date dateOfReturn) {
+        this.dateOfReturn = dateOfReturn;
     }
 }

@@ -7,12 +7,14 @@ public class BookDetailsDTO {
     private Book book;
     private String genre;
     private String summary;
+    private String coverImageURL;
 
-    public BookDetailsDTO(int bookDetailsId, Book book, String genre, String summary) {
+    public BookDetailsDTO(int bookDetailsId, Book book, String genre, String summary, String coverImageURL) {
         this.bookDetailsId = bookDetailsId;
         this.book = book;
         this.genre = genre;
         this.summary = summary;
+        this.coverImageURL = coverImageURL;
     }
 
     public BookDetailsDTO() {
@@ -48,5 +50,13 @@ public class BookDetailsDTO {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getCoverImageURL() {
+        return coverImageURL;
+    }
+
+    public void setCoverImageURL(String coverImageURL) {
+        this.coverImageURL = coverImageURL;
     }
 }

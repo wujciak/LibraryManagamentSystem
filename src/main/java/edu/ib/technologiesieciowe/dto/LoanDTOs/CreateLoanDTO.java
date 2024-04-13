@@ -9,11 +9,16 @@ public class CreateLoanDTO {
     private Book book;
     private User user;
     private Date dateOfStart;
+    private Date dateOfEnd;
 
-    public CreateLoanDTO(Book book, User user, Date dateOfStart) {
+    private Date dateOfReturn;
+
+    public CreateLoanDTO(Book book, User user, Date dateOfStart, Date dateOfEnd, Date dateOfReturn) {
         this.book = book;
         this.user = user;
         this.dateOfStart = dateOfStart;
+        this.dateOfEnd = dateOfEnd;
+        this.dateOfReturn = dateOfReturn;
     }
 
     public CreateLoanDTO() {
@@ -41,5 +46,21 @@ public class CreateLoanDTO {
 
     public void setDateOfStart(Date dateOfStart) {
         this.dateOfStart = dateOfStart;
+    }
+
+    public Date getDateOfEnd() {
+        return dateOfEnd;
+    }
+
+    public void setDateOfEnd(Date dateOfEnd) {
+        this.dateOfEnd = dateOfEnd;
+    }
+
+    public Date getDateOfReturn() {
+        return dateOfReturn;
+    }
+
+    public void setDateOfReturn(Date dateOfReturn) {
+        this.dateOfReturn = dateOfReturn;
     }
 }
