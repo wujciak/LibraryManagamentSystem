@@ -4,6 +4,9 @@ import edu.ib.technologiesieciowe.dto.UserDTOs.LoginResponseDTO;
 import edu.ib.technologiesieciowe.dto.UserDTOs.LoginDTO;
 import edu.ib.technologiesieciowe.dto.UserDTOs.RegisterDTO;
 import edu.ib.technologiesieciowe.dto.UserDTOs.RegisterResponseDTO;
+import edu.ib.technologiesieciowe.exception.PasswordMismatchException;
+import edu.ib.technologiesieciowe.exception.UserAlreadyExistsException;
+import edu.ib.technologiesieciowe.exception.EntityNotFoundException;
 import edu.ib.technologiesieciowe.model.Auth;
 import edu.ib.technologiesieciowe.model.User;
 import edu.ib.technologiesieciowe.repository.AuthRepository;
@@ -12,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -30,6 +35,12 @@ public class AuthService {
 
     @Transactional
     public RegisterResponseDTO register(RegisterDTO dto) {
+        Optional<Auth> existingAuth = authRepository.findByUsername(dto.getUsername());
+
+        if (existingAuth.isPresent()) {
+            throw UserAlreadyExistsException.create(dto.getUsername());
+        }
+
         User user = new User();
         user.setEmail(dto.getEmail());
         userRepository.save(user);
@@ -46,10 +57,11 @@ public class AuthService {
     }
 
     public LoginResponseDTO login(LoginDTO dto) {
-        Auth auth = authRepository.findByUsername(dto.getUsername()).orElseThrow(RuntimeException::new);
+        Auth auth = authRepository.findByUsername(dto.getUsername())
+                .orElseThrow(EntityNotFoundException::create);
 
         if(!passwordEncoder.matches(dto.getPassword(), auth.getPassword())) {
-            throw new RuntimeException("Test");
+            throw PasswordMismatchException.create();
         }
 
         String token = jwtService.generateToken(auth);

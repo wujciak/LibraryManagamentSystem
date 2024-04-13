@@ -1,5 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
+import edu.ib.technologiesieciowe.exception.EntityNotFoundException;
 import edu.ib.technologiesieciowe.model.User;
 import edu.ib.technologiesieciowe.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class UserService {
     }
 
     public User getOne(int userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findById(userId).orElseThrow(EntityNotFoundException::create);
     }
 
     public User create(User user) {
@@ -28,7 +29,7 @@ public class UserService {
 
     public void delete(int userId) {
         if (!userRepository.existsById(userId)) {
-            throw new RuntimeException();
+            throw EntityNotFoundException.create();
         }
         userRepository.deleteById(userId);
     }

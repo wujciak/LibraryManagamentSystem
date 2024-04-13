@@ -1,5 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
+import edu.ib.technologiesieciowe.exception.EntityNotFoundException;
 import edu.ib.technologiesieciowe.model.Book;
 import edu.ib.technologiesieciowe.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class BookService {
     }
 
     public Book getOne(int bookId) {
-        return bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Book not found"));
+        return bookRepository.findById(bookId).orElseThrow(EntityNotFoundException::create);
     }
 
     public Book create(Book book) {
@@ -28,7 +29,7 @@ public class BookService {
 
     public void delete(int bookId) {
         if (!bookRepository.existsById(bookId)) {
-            throw new RuntimeException();
+            throw EntityNotFoundException.create();
         }
         bookRepository.deleteById(bookId);
     }

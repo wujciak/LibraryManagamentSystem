@@ -15,7 +15,6 @@ import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/api/loan")
-@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
 public class LoanController {
     private final LoanService loanService;
     private final ModelMapper modelMapper;
@@ -27,12 +26,14 @@ public class LoanController {
     }
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
     public @ResponseBody Iterable<LoanDTO> getAll() {
         Iterable<Loan> loans = loanService.getAll();
         return mapLoansToDTOs(loans);
     }
 
     @GetMapping("/{loanId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
     public LoanDTO getOne(@PathVariable int loanId) {
         Loan loan = loanService.getOne(loanId);
         return modelMapper.map(loan, LoanDTO.class);
@@ -40,6 +41,7 @@ public class LoanController {
 
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public @ResponseBody LoanDTO create(@RequestBody CreateLoanDTO createLoanDTO) {
         Loan loan = modelMapper.map(createLoanDTO, Loan.class);
         Loan createdLoan = loanService.create(loan);
@@ -48,6 +50,7 @@ public class LoanController {
 
     @DeleteMapping("/{loanId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@PathVariable int loanId) {
         loanService.delete(loanId);
     }

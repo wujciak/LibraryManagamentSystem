@@ -50,6 +50,7 @@ public class ReviewController {
 
     @DeleteMapping("/{reviewId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@PathVariable int reviewId) {
         reviewService.delete(reviewId);
     }

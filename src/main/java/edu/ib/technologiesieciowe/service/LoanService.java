@@ -1,5 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
+import edu.ib.technologiesieciowe.exception.EntityNotFoundException;
 import edu.ib.technologiesieciowe.model.Loan;
 import edu.ib.technologiesieciowe.repository.LoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class LoanService {
     }
 
     public Loan getOne(int loanId) {
-        return loanRepository.findById(loanId).orElseThrow(() -> new RuntimeException("Loan not found"));
+        return loanRepository.findById(loanId).orElseThrow(EntityNotFoundException::create);
     }
 
     public Loan create(Loan loan) {
@@ -28,7 +29,7 @@ public class LoanService {
 
     public void delete(int loanId) {
         if (!loanRepository.existsById(loanId)) {
-            throw new RuntimeException();
+            throw EntityNotFoundException.create();
         }
         loanRepository.deleteById(loanId);
     }

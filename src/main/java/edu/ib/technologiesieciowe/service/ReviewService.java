@@ -1,5 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
+import edu.ib.technologiesieciowe.exception.EntityNotFoundException;
 import edu.ib.technologiesieciowe.model.Review;
 import edu.ib.technologiesieciowe.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class ReviewService {
     }
 
     public Review getOne(int reviewId) {
-        return reviewRepository.findById(reviewId).orElseThrow(() -> new RuntimeException("Review not found"));
+        return reviewRepository.findById(reviewId).orElseThrow(EntityNotFoundException::create);
     }
 
     public Review create(Review review) {
@@ -28,7 +29,7 @@ public class ReviewService {
 
     public void delete(int reviewId) {
         if (!reviewRepository.existsById(reviewId)) {
-            throw new RuntimeException();
+            throw EntityNotFoundException.create();
         }
         reviewRepository.deleteById(reviewId);
     }
