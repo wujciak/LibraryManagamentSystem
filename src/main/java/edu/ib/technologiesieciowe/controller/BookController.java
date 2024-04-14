@@ -4,6 +4,7 @@ import edu.ib.technologiesieciowe.dto.BookDTOs.CreateBookDTO;
 import edu.ib.technologiesieciowe.dto.BookDTOs.BookDTO;
 import edu.ib.technologiesieciowe.model.Book;
 import edu.ib.technologiesieciowe.service.BookService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class BookController {
 
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public @ResponseBody BookDTO create(@RequestBody CreateBookDTO createBookDTO) {
+    public @ResponseBody BookDTO create(@Valid @RequestBody CreateBookDTO createBookDTO) {
         Book book = modelMapper.map(createBookDTO, Book.class);
         Book createdBook = bookService.create(book);
         return modelMapper.map(createdBook, BookDTO.class);

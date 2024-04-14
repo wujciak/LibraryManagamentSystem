@@ -2,13 +2,22 @@ package edu.ib.technologiesieciowe.dto.LoanDTOs;
 
 import edu.ib.technologiesieciowe.model.Book;
 import edu.ib.technologiesieciowe.model.User;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
 public class CreateLoanDTO {
+    @NotNull(message = "Loan should include book.")
     private Book book;
+
+    @NotNull(message = "Loan should include user.")
     private User user;
+
+    @NotNull(message = "Loan should include date of start.")
     private Date dateOfStart;
+
+    @NotNull(message = "Loan should include date of end.")
     private Date dateOfEnd;
     private Date dateOfReturn;
 

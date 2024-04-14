@@ -4,6 +4,7 @@ import edu.ib.technologiesieciowe.dto.ReviewDTOs.CreateReviewDTO;
 import edu.ib.technologiesieciowe.dto.ReviewDTOs.ReviewDTO;
 import edu.ib.technologiesieciowe.model.Review;
 import edu.ib.technologiesieciowe.service.ReviewService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class ReviewController {
 
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public @ResponseBody ReviewDTO create(@RequestBody CreateReviewDTO createReviewDTO) {
+    public @ResponseBody ReviewDTO create(@Valid @RequestBody CreateReviewDTO createReviewDTO) {
         Review review = modelMapper.map(createReviewDTO, Review.class);
         Review createdReview = reviewService.create(review);
         return modelMapper.map(createdReview, ReviewDTO.class);

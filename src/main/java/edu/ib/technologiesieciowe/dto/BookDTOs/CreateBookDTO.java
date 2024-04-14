@@ -1,11 +1,25 @@
 package edu.ib.technologiesieciowe.dto.BookDTOs;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class CreateBookDTO {
+    @NotBlank(message = "ISBN is mandatory.")
     private String isbn;
+
+    @NotBlank(message = "Title is mandatory.")
     private String title;
+
+    @NotBlank(message = "Author is mandatory.")
     private String author;
+
+    @NotBlank(message = "Publisher is mandatory.")
     private String publisher;
+
+    @NotNull(message = "Year of publish is mandatory.")
     private int yearOfPublish;
+
+    @NotNull(message = "Number of available copies is mandatory.")
     private int availableCopies;
 
     public CreateBookDTO(String isbn, String title, String author, String publisher, int yearOfPublish, int availableCopies) {

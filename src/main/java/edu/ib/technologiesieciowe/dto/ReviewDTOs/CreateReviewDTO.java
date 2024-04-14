@@ -2,14 +2,23 @@ package edu.ib.technologiesieciowe.dto.ReviewDTOs;
 
 import edu.ib.technologiesieciowe.model.Book;
 import edu.ib.technologiesieciowe.model.User;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
 public class CreateReviewDTO {
+    @NotNull(message = "Review should include book.")
     private Book book;
+
+    @NotNull(message = "Review should include user.")
     private User user;
+
+    @NotNull(message = "Review should include score.")
     private int score;
+
     private String comment;
+
+    @NotNull(message = "Review should include date.")
     private Date dateOfReview;
 
     public CreateReviewDTO(Book book, User user, int score, String comment, Date dateOfReview) {

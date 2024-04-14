@@ -26,7 +26,7 @@ public class Loan {
     private Date dateOfStart;
 
     @Basic
-    @Column(name = "date_of_end")
+    @Column(name = "date_of_end", nullable = false)
     private Date dateOfEnd;
 
     @Basic

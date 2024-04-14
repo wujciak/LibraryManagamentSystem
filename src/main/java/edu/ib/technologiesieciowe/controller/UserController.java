@@ -4,18 +4,21 @@ import edu.ib.technologiesieciowe.dto.UserDTOs.CreateUserDTO;
 import edu.ib.technologiesieciowe.dto.UserDTOs.UserDTO;
 import edu.ib.technologiesieciowe.model.User;
 import edu.ib.technologiesieciowe.service.UserService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/api/user")
-@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("isAuthenticated()")
 public class UserController {
     private final ModelMapper modelMapper;
     private final UserService userService;
@@ -24,6 +27,13 @@ public class UserController {
     public UserController(ModelMapper modelMapper, UserService userService) {
         this.modelMapper = modelMapper;
         this.userService = userService;}
+
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> getMe(Principal principal) {
+        String username = principal.getName();
+        UserDTO userDTO = userService.getUserByUsername(username);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
 
     @GetMapping("/getAll")
     public @ResponseBody Iterable<UserDTO> getAll() {
@@ -39,7 +49,7 @@ public class UserController {
 
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public @ResponseBody UserDTO create(@RequestBody CreateUserDTO createUserDTO) {
+    public @ResponseBody UserDTO create(@Valid @RequestBody CreateUserDTO createUserDTO) {
         User user = modelMapper.map(createUserDTO, User.class);
         User createdUser = userService.create(user);
         return modelMapper.map(createdUser, UserDTO.class);

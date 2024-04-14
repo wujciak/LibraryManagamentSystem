@@ -4,6 +4,7 @@ import edu.ib.technologiesieciowe.dto.LoanDTOs.CreateLoanDTO;
 import edu.ib.technologiesieciowe.dto.LoanDTOs.LoanDTO;
 import edu.ib.technologiesieciowe.model.Loan;
 import edu.ib.technologiesieciowe.service.LoanService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class LoanController {
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
-    public @ResponseBody LoanDTO create(@RequestBody CreateLoanDTO createLoanDTO) {
+    public @ResponseBody LoanDTO create(@Valid @RequestBody CreateLoanDTO createLoanDTO) {
         Loan loan = modelMapper.map(createLoanDTO, Loan.class);
         Loan createdLoan = loanService.create(loan);
         return modelMapper.map(createdLoan, LoanDTO.class);

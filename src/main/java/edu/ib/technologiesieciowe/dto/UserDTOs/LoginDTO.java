@@ -1,7 +1,12 @@
 package edu.ib.technologiesieciowe.dto.UserDTOs;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class LoginDTO {
+    @NotBlank(message = "Username is mandatory.")
     private String username;
+
+    @NotBlank(message = "Username is mandatory.")
     private String password;
 
     public LoginDTO(String username, String password) {

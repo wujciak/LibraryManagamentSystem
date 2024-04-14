@@ -1,11 +1,22 @@
 package edu.ib.technologiesieciowe.dto.UserDTOs;
 
 import edu.ib.technologiesieciowe.enumType.UserRole;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class RegisterDTO {
+    @NotBlank(message = "Username is mandatory.")
     private String username;
+
+    @NotBlank(message = "Password is mandatory.")
     private String password;
+
+    @NotNull
     private UserRole role;
+
+    @NotBlank(message = "Email is mandatory.")
+    @Email
     private String email;
 
     public RegisterDTO(String username, String password, UserRole role, String email) {
