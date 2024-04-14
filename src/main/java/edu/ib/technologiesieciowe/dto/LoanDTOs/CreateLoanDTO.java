@@ -10,7 +10,6 @@ public class CreateLoanDTO {
     private User user;
     private Date dateOfStart;
     private Date dateOfEnd;
-
     private Date dateOfReturn;
 
     public CreateLoanDTO(Book book, User user, Date dateOfStart, Date dateOfEnd, Date dateOfReturn) {

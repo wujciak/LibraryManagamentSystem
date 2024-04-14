@@ -32,7 +32,7 @@ public class ReviewController {
         return mapReviewsToDTOs(reviews);
     }
 
-    @GetMapping("/{reviewId}")
+    @GetMapping("/get/{reviewId}")
     public ReviewDTO getOne(@PathVariable int reviewId) {
         Review review = reviewService.getOne(reviewId);
         return modelMapper.map(review, ReviewDTO.class);
@@ -46,7 +46,7 @@ public class ReviewController {
         return modelMapper.map(createdReview, ReviewDTO.class);
     }
 
-    @DeleteMapping("/{reviewId}")
+    @DeleteMapping("/delete/{reviewId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@PathVariable int reviewId) {

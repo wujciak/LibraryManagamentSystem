@@ -9,16 +9,26 @@ public class CreateReviewDTO {
     private Book book;
     private User user;
     private int score;
+    private String comment;
     private Date dateOfReview;
 
-    public CreateReviewDTO(Book book, User user, int score, Date dateOfReview) {
+    public CreateReviewDTO(Book book, User user, int score, String comment, Date dateOfReview) {
         this.book = book;
         this.user = user;
         this.score = score;
+        this.comment = comment;
         this.dateOfReview = dateOfReview;
     }
 
     public CreateReviewDTO() {
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Book getBook() {

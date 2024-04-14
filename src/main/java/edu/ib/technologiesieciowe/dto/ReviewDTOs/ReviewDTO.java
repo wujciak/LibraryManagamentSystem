@@ -10,17 +10,27 @@ public class ReviewDTO {
     private Book book;
     private User user;
     private int score;
+    private String comment;
     private Date dateOfReview;
 
-    public ReviewDTO(int reviewId, Book book, User user, int score, Date dateOfReview) {
+    public ReviewDTO(int reviewId, Book book, User user, int score, String comment, Date dateOfReview) {
         this.reviewId = reviewId;
         this.book = book;
         this.user = user;
         this.score = score;
+        this.comment = comment;
         this.dateOfReview = dateOfReview;
     }
 
     public ReviewDTO() {
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public int getReviewId() {

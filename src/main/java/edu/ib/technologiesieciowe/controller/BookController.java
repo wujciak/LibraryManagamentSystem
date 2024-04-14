@@ -33,7 +33,7 @@ public class BookController {
         return mapBooksToDTOs(books);
     }
 
-    @GetMapping("/{bookId}")
+    @GetMapping("/get/{bookId}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
     public BookDTO getOne(@PathVariable int bookId) {
         Book book = bookService.getOne(bookId);
@@ -48,7 +48,7 @@ public class BookController {
         return modelMapper.map(createdBook, BookDTO.class);
     }
 
-    @DeleteMapping("/{bookId}")
+    @DeleteMapping("/delete/{bookId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int bookId) {
         bookService.delete(bookId);

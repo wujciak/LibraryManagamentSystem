@@ -31,7 +31,7 @@ public class UserController {
         return mapUsersToDTOs(users);
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/get/{userId}")
     public UserDTO getOne(@PathVariable int userId) {
         User user = userService.getOne(userId);
         return modelMapper.map(user, UserDTO.class);
@@ -45,7 +45,7 @@ public class UserController {
         return modelMapper.map(createdUser, UserDTO.class);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/delete/{userId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int userId) {
         userService.delete(userId);
