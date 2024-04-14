@@ -1,9 +1,7 @@
 package edu.ib.technologiesieciowe.controller;
 
-import edu.ib.technologiesieciowe.dto.BookDTOs.BookDTO;
 import edu.ib.technologiesieciowe.dto.ReviewDTOs.CreateReviewDTO;
 import edu.ib.technologiesieciowe.dto.ReviewDTOs.ReviewDTO;
-import edu.ib.technologiesieciowe.model.Book;
 import edu.ib.technologiesieciowe.model.Review;
 import edu.ib.technologiesieciowe.service.ReviewService;
 import org.modelmapper.ModelMapper;

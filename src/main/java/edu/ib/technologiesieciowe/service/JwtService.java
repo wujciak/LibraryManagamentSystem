@@ -17,7 +17,6 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    private long tokenLifeTime = 1000 * 60 * 24;
 
     @Value("${token.signing.key}")
     private String jwtSigningKey;
@@ -66,6 +65,7 @@ public class JwtService {
 
     private String generateToken(Map<String, Object> extraClaims, Auth userDetails) {
         extraClaims.put("role", userDetails.getRole());
+        long tokenLifeTime = 1000 * 60 * 24;
         return Jwts.builder()
                 .claims(extraClaims)
                 .subject(userDetails.getUsername())
