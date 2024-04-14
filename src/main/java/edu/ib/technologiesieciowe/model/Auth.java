@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.model;
 
-import edu.ib.technologiesieciowe.commonTypes.UserRole;
+import edu.ib.technologiesieciowe.enumType.UserRole;
 import jakarta.persistence.*;
 
 @Entity

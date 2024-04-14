@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.service;
 
-import edu.ib.technologiesieciowe.commonTypes.UserRole;
+import edu.ib.technologiesieciowe.enumType.UserRole;
 import edu.ib.technologiesieciowe.model.Auth;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

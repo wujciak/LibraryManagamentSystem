@@ -1,4 +1,4 @@
-package edu.ib.technologiesieciowe.commonTypes;
+package edu.ib.technologiesieciowe.enumType;
 
 public enum UserRole {
     ROLE_READER,

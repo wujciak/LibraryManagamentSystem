@@ -1,6 +1,6 @@
 package edu.ib.technologiesieciowe.dto.UserDTOs;
 
-import edu.ib.technologiesieciowe.commonTypes.UserRole;
+import edu.ib.technologiesieciowe.enumType.UserRole;
 
 public class RegisterResponseDTO {
     private int userId;
