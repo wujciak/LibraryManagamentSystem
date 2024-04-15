@@ -2,6 +2,7 @@ package edu.ib.technologiesieciowe.controller;
 
 import edu.ib.technologiesieciowe.dto.LoanDTOs.CreateLoanDTO;
 import edu.ib.technologiesieciowe.dto.LoanDTOs.LoanDTO;
+import edu.ib.technologiesieciowe.enumType.UserRole;
 import edu.ib.technologiesieciowe.model.Loan;
 import edu.ib.technologiesieciowe.service.LoanService;
 import jakarta.validation.Valid;
@@ -9,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
@@ -29,10 +32,21 @@ public class LoanController {
 
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
-
-    public @ResponseBody Iterable<LoanDTO> getAll() {
-        Iterable<Loan> loans = loanService.getAll();
+    public @ResponseBody Iterable<LoanDTO> getAll(Authentication authentication) {
+        UserRole role = getRoleFromAuthentication(authentication);
+        Iterable<Loan> loans = loanService.getAll(role, authentication.getName());
         return mapLoansToDTOs(loans);
+    }
+
+    private UserRole getRoleFromAuthentication(Authentication authentication) {
+        for (GrantedAuthority authority : authentication.getAuthorities()) {
+            if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                return UserRole.ROLE_ADMIN;
+            } else if (authority.getAuthority().equals("ROLE_READER")) {
+                return UserRole.ROLE_READER;
+            }
+        }
+        throw new IllegalArgumentException("Invalid user role");
     }
 
     @GetMapping("/get/{loanId}")
@@ -44,10 +58,10 @@ public class LoanController {
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
-    public @ResponseBody LoanDTO create(@Valid @RequestBody CreateLoanDTO createLoanDTO) {
-        Loan loan = modelMapper.map(createLoanDTO, Loan.class);
-        Loan createdLoan = loanService.create(loan);
-        return modelMapper.map(createdLoan, LoanDTO.class);
+    public @ResponseBody LoanDTO create(@Valid @RequestBody CreateLoanDTO createLoanDTO, Authentication authentication) {
+        UserRole role = getRoleFromAuthentication(authentication);
+        Loan loan = loanService.create(createLoanDTO, role);
+        return modelMapper.map(loan, LoanDTO.class);
     }
 
     @DeleteMapping("/delete/{loanId}")
