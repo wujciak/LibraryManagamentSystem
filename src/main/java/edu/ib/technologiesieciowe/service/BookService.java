@@ -6,6 +6,8 @@ import edu.ib.technologiesieciowe.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookService {
     private final BookRepository bookRepository;
@@ -33,4 +35,9 @@ public class BookService {
         }
         bookRepository.deleteById(bookId);
     }
+
+    public List<Book> searchByTitle(String title) {
+        return bookRepository.findByTitleContaining(title);
+    }
+
 }

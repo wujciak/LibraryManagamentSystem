@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -55,6 +56,13 @@ public class BookController {
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int bookId) {
         bookService.delete(bookId);
+    }
+
+    @GetMapping("/search")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
+    public @ResponseBody Iterable<BookDTO> searchByTitle(@RequestParam String title) {
+        List<Book> books = bookService.searchByTitle(title);
+        return mapBooksToDTOs(books);
     }
 
     private Iterable<BookDTO> mapBooksToDTOs(Iterable<Book> books) {
