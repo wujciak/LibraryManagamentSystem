@@ -5,6 +5,7 @@ import edu.ib.technologiesieciowe.dto.LoanDTOs.LoanDTO;
 import edu.ib.technologiesieciowe.enumType.UserRole;
 import edu.ib.technologiesieciowe.model.Loan;
 import edu.ib.technologiesieciowe.service.LoanService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/api/loan")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
+@Tag(name = "Loan")
 public class LoanController {
     private final LoanService loanService;
     private final ModelMapper modelMapper;

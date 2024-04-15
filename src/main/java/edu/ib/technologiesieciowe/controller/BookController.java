@@ -4,6 +4,7 @@ import edu.ib.technologiesieciowe.dto.BookDTOs.CreateBookDTO;
 import edu.ib.technologiesieciowe.dto.BookDTOs.BookDTO;
 import edu.ib.technologiesieciowe.model.Book;
 import edu.ib.technologiesieciowe.service.BookService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/api/book")
 @PreAuthorize("hasRole('ADMIN')")
+@Tag(name = "Book")
 public class BookController {
     private final ModelMapper modelMapper;
     private final BookService bookService;

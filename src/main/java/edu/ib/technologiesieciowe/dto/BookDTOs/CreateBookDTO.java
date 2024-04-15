@@ -1,25 +1,32 @@
 package edu.ib.technologiesieciowe.dto.BookDTOs;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class CreateBookDTO {
     @NotBlank(message = "ISBN is mandatory.")
+    @Schema(name = "isbn", example = "0-061-96436-0")
     private String isbn;
 
     @NotBlank(message = "Title is mandatory.")
+    @Schema(name = "title", example = "Romek i Atomek")
     private String title;
 
     @NotBlank(message = "Author is mandatory.")
+    @Schema(name = "author", example = "Kendrick Lamar")
     private String author;
 
     @NotBlank(message = "Publisher is mandatory.")
+    @Schema(name = "publisher", example = "O.E. Pazdro")
     private String publisher;
 
     @NotNull(message = "Year of publish is mandatory.")
+    @Schema(name = "year of publication", example = "2002")
     private int yearOfPublish;
 
     @NotNull(message = "Number of available copies is mandatory.")
+    @Schema(name = "available copies", example = "12")
     private int availableCopies;
 
     public CreateBookDTO(String isbn, String title, String author, String publisher, int yearOfPublish, int availableCopies) {

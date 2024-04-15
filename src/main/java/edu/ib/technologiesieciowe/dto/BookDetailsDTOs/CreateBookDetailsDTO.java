@@ -1,11 +1,19 @@
 package edu.ib.technologiesieciowe.dto.BookDetailsDTOs;
 
 import edu.ib.technologiesieciowe.model.Book;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class CreateBookDetailsDTO {
+    @Schema(name = "book")
     private Book book;
+
+    @Schema(name = "genre", example = "Comedy")
     private String genre;
+
+    @Schema(name = "summary", example = "Short comedy about ducks.")
     private String summary;
+
+    @Schema(name = "cover image url", example = "s1aj34f5i36w3bifwf.webp")
     private String coverImageURL;
 
 

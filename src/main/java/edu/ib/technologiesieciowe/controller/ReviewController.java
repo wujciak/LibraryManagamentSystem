@@ -4,6 +4,7 @@ import edu.ib.technologiesieciowe.dto.ReviewDTOs.CreateReviewDTO;
 import edu.ib.technologiesieciowe.dto.ReviewDTOs.ReviewDTO;
 import edu.ib.technologiesieciowe.model.Review;
 import edu.ib.technologiesieciowe.service.ReviewService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/api/review")
 @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
+@Tag(name = "Review")
 public class ReviewController {
     private final ReviewService reviewService;
     private final ModelMapper modelMapper;

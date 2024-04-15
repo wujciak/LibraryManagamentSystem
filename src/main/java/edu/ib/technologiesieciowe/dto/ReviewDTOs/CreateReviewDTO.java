@@ -2,23 +2,29 @@ package edu.ib.technologiesieciowe.dto.ReviewDTOs;
 
 import edu.ib.technologiesieciowe.model.Book;
 import edu.ib.technologiesieciowe.model.User;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
 public class CreateReviewDTO {
     @NotNull(message = "Review should include book.")
+    @Schema(name = "book")
     private Book book;
 
     @NotNull(message = "Review should include user.")
+    @Schema(name = "user")
     private User user;
 
     @NotNull(message = "Review should include score.")
+    @Schema(name = "score", example = "7")
     private int score;
 
+    @Schema(name = "comment", example = "Enjoyed this book so much!")
     private String comment;
 
     @NotNull(message = "Review should include date.")
+    @Schema(name = "date of review", example = "2012-03-12")
     private Date dateOfReview;
 
     public CreateReviewDTO(Book book, User user, int score, String comment, Date dateOfReview) {
