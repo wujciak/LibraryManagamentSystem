@@ -33,4 +33,16 @@ public class BookDetailsService {
         }
         bookDetailsRepository.deleteById(bookDetailsId);
     }
+
+    public BookDetails update(int bookDetailsId, BookDetails updatedBookDetails) {
+        BookDetails existingBookDetails = bookDetailsRepository.findById(bookDetailsId)
+                .orElseThrow(() -> new EntityNotFoundException("Book details not found with id: " + bookDetailsId));
+
+        existingBookDetails.setGenre(updatedBookDetails.getGenre());
+        existingBookDetails.setSummary(updatedBookDetails.getSummary());
+        existingBookDetails.setCoverImageURL(updatedBookDetails.getCoverImageURL());
+
+        return bookDetailsRepository.save(existingBookDetails);
+    }
+
 }

@@ -5,6 +5,7 @@ import edu.ib.technologiesieciowe.dto.BookDetailsDTOs.CreateBookDetailsDTO;
 import edu.ib.technologiesieciowe.model.BookDetails;
 import edu.ib.technologiesieciowe.service.BookDetailsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,6 +56,14 @@ public class BookDetailsController {
     public void delete(@PathVariable int bookDetailsId) {
         bookDetailsService.delete(bookDetailsId);
     }
+
+    @PutMapping("/update/{bookDetailsId}")
+    public @ResponseBody BookDetailsDTO update(@PathVariable int bookDetailsId, @Valid @RequestBody BookDetailsDTO bookDetailsDTO) {
+        BookDetails bookDetails = modelMapper.map(bookDetailsDTO, BookDetails.class);
+        BookDetails updatedBookDetails = bookDetailsService.update(bookDetailsId, bookDetails);
+        return modelMapper.map(updatedBookDetails, BookDetailsDTO.class);
+    }
+
     private Iterable<BookDetailsDTO> mapBookDetailsToDTOs(Iterable<BookDetails> bookDetails) {
         return StreamSupport.stream(bookDetails.spliterator(), false)
                 .map(bookDetail -> modelMapper.map(bookDetail, BookDetailsDTO.class))

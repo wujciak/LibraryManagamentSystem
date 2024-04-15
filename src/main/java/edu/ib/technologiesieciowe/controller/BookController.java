@@ -65,6 +65,13 @@ public class BookController {
         return mapBooksToDTOs(books);
     }
 
+    @PutMapping("/update/{bookId}")
+    public @ResponseBody BookDTO update(@PathVariable int bookId, @Valid @RequestBody BookDTO bookDTO) {
+        Book book = modelMapper.map(bookDTO, Book.class);
+        Book updatedBook = bookService.update(bookId, book);
+        return modelMapper.map(updatedBook, BookDTO.class);
+    }
+
     private Iterable<BookDTO> mapBooksToDTOs(Iterable<Book> books) {
         return StreamSupport.stream(books.spliterator(), false)
                 .map(book -> modelMapper.map(book, BookDTO.class))

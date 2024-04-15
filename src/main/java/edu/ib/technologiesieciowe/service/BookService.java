@@ -40,4 +40,17 @@ public class BookService {
         return bookRepository.findByTitleContaining(title);
     }
 
+    public Book update(int bookId, Book updatedBook) {
+        Book existingBook = bookRepository.findById(bookId)
+                .orElseThrow(() -> new EntityNotFoundException("Book not found with id: " + bookId));
+
+        existingBook.setTitle(updatedBook.getTitle());
+        existingBook.setAuthor(updatedBook.getAuthor());
+        existingBook.setPublisher(updatedBook.getPublisher());
+        existingBook.setYearOfPublish(updatedBook.getYearOfPublish());
+        existingBook.setAvailableCopies(updatedBook.getAvailableCopies());
+
+        return bookRepository.save(existingBook);
+    }
+
 }
