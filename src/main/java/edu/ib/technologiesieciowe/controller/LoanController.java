@@ -62,8 +62,9 @@ public class LoanController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
     public @ResponseBody LoanDTO create(@Valid @RequestBody CreateLoanDTO createLoanDTO, Authentication authentication) {
         UserRole role = getRoleFromAuthentication(authentication);
-        Loan loan = loanService.create(createLoanDTO, role);
-        return modelMapper.map(loan, LoanDTO.class);
+        Loan loan = modelMapper.map(createLoanDTO, Loan.class);
+        Loan createdLoan = loanService.create(loan, role);
+        return modelMapper.map(createdLoan, LoanDTO.class);
     }
 
     @DeleteMapping("/delete/{loanId}")

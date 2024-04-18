@@ -30,11 +30,9 @@ public class LoanService {
         return loanRepository.findById(loanId).orElseThrow(EntityNotFoundException::create);
     }
 
-    public Loan create(CreateLoanDTO createLoanDTO, UserRole role) {
-        Loan loan = new Loan();
-
+    public Loan create(Loan loan, UserRole role) {
         if (role == UserRole.ROLE_ADMIN) {
-            loan.setDateOfReturn(createLoanDTO.getDateOfReturn());
+            loan.setDateOfReturn(loan.getDateOfReturn());
         } else {
             loan.setDateOfReturn(null); // Dla czytelnika, data zwrotu nie jest ustawiana
         }
