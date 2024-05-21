@@ -5,7 +5,6 @@ import edu.ib.technologiesieciowe.dto.UserDTOs.UserDTO;
 import edu.ib.technologiesieciowe.model.User;
 import edu.ib.technologiesieciowe.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/api/user")
 @PreAuthorize("isAuthenticated()")
+@CrossOrigin
 @Tag(name = "User")
 public class UserController {
     private final ModelMapper modelMapper;

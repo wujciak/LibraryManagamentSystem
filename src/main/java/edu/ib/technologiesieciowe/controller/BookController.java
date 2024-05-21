@@ -19,6 +19,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/api/book")
 @PreAuthorize("hasRole('ADMIN')")
+@CrossOrigin
 @Tag(name = "Book")
 public class BookController {
     private final ModelMapper modelMapper;

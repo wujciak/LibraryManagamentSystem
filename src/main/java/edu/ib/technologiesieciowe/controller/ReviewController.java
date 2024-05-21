@@ -18,6 +18,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/api/review")
 @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_READER')")
+@CrossOrigin
 @Tag(name = "Review")
 public class ReviewController {
     private final ReviewService reviewService;

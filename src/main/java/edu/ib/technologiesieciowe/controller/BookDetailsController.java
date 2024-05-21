@@ -18,6 +18,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/api/bookDetails")
 @PreAuthorize("hasRole('ADMIN')")
+@CrossOrigin
 @Tag(name = "Book Details")
 public class BookDetailsController {
     private final BookDetailsService bookDetailsService;

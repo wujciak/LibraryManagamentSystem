@@ -21,6 +21,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/api/loan")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
+@CrossOrigin
 @Tag(name = "Loan")
 public class LoanController {
     private final LoanService loanService;
