@@ -46,6 +46,7 @@ public class BookController {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(code = HttpStatus.CREATED)
     public @ResponseBody BookDTO create(@Valid @RequestBody CreateBookDTO createBookDTO) {
         Book book = modelMapper.map(createBookDTO, Book.class);

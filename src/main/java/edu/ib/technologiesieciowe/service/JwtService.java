@@ -65,7 +65,7 @@ public class JwtService {
 
     private String generateToken(Map<String, Object> extraClaims, Auth userDetails) {
         extraClaims.put("role", userDetails.getRole());
-        long tokenLifeTime = 1000 * 60 * 24;
+        long tokenLifeTime = 1000 * 60 * 60; // 60 minutes
         return Jwts.builder()
                 .claims(extraClaims)
                 .subject(userDetails.getUsername())
