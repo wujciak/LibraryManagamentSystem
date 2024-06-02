@@ -18,7 +18,6 @@ import java.util.stream.StreamSupport;
 
 @RestController
 @RequestMapping("/api/book")
-@PreAuthorize("hasRole('ADMIN')")
 @CrossOrigin
 @Tag(name = "Book")
 public class BookController {
@@ -55,6 +54,7 @@ public class BookController {
     }
 
     @DeleteMapping("/delete/{bookId}")
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int bookId) {
         bookService.delete(bookId);
@@ -67,6 +67,7 @@ public class BookController {
         return mapBooksToDTOs(books);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{bookId}")
     public @ResponseBody BookDTO update(@PathVariable int bookId, @Valid @RequestBody BookDTO bookDTO) {
         Book book = modelMapper.map(bookDTO, Book.class);
