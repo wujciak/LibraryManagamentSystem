@@ -1,6 +1,5 @@
 package edu.ib.technologiesieciowe.service;
 
-import edu.ib.technologiesieciowe.dto.LoanDTOs.CreateLoanDTO;
 import edu.ib.technologiesieciowe.enumType.UserRole;
 import edu.ib.technologiesieciowe.exception.EntityNotFoundException;
 import edu.ib.technologiesieciowe.model.Loan;
